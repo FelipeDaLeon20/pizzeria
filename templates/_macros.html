@@ -1,0 +1,26 @@
+{# templates/macros.html #}
+
+
+{% macro datos(name, placeholder, type='text') %}
+<div class="mb-3">
+    <label for="{{ name }}" class="form-label">{{ name|capitalize }}</label>
+    <input type="{{ type }}" class="form-control" id="{{ name }}" name="{{ name }}" placeholder="{{ placeholder }}" required>
+</div>
+{% endmacro %}
+
+
+
+{% macro camposNuevos(field) %}
+<div class="mb-3">
+    {{ field.label(class="form-label") }}
+    {{ field(class="form-control") }}
+    {% if field.errors %}
+        <ul class="text-danger">
+            {% for error in field.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endmacro %}
+
